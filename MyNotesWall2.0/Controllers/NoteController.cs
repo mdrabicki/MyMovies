@@ -35,7 +35,13 @@ namespace MyNotesWall.Controllers
 
         [HttpPost("[action]")]
         public NoteRequest addNote([FromBody] NoteRequest note)
-        {    
+        {
+            
+            if (!ModelState.IsValid)
+            {
+                note.Content = ModelState.ErrorCount.ToString();
+                return note;
+            }
             return note;
         }
     }

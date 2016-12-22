@@ -13,18 +13,17 @@ import {Note} from './note';
 })
 
 export class NoteCreateComponent{
-    
+    note:Note;
 
     constructor(
         private noteService:NoteService,
         private location:Location,
     ){
+        this.note=new Note();
     }
 
-    addNote():void{
-        let note = new Note();
-            
-        this.noteService.addNote(note)
+    addNote():void{            
+        this.noteService.addNote(this.note)
         .then(()=>this.goBack());
     }
     goBack():void{

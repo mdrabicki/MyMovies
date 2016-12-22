@@ -21,16 +21,15 @@ export class NoteService {
         .catch(this.handleError); 
     };
     
-    addNote(note:Note):Promise<Note>{
+    addNote(note:Note):Promise<void>{
         console.log("dzialam");
-        note.title="test title";
-        note.content="tez test";
+       
         return this.http
         .post(this.notesURL+'/addNote'
             ,JSON.stringify(note)
             ,{headers:this.header})
         .toPromise()
-        .then(response => response.json())
+        .then(()=>null)
         .catch(this.handleError);
     };
 
