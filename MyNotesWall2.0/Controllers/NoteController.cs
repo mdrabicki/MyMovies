@@ -34,10 +34,9 @@ namespace MyNotesWall.Controllers
         }
 
         [HttpPost("[action]")]
-        public void addNote(NoteRequest note)
-        {
-            
-            return;
+        public NoteRequest addNote([FromBody] NoteRequest note)
+        {    
+            return note;
         }
     }
 }
