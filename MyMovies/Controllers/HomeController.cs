@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-namespace MyNotesWall2._0.Controllers
+namespace MyMovies.Controllers
 {
     public class HomeController : Controller
     {

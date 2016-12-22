@@ -4,12 +4,13 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MyNotesWall.Models
+namespace MyMovies.Models
 {
-    public class NoteRequest
+    public class MovieRequest
     {
         [Required]
         public string Title { get; set; }
-        public string Content { get; set; }
+
+        public int Year { get; set; }
     }
 }

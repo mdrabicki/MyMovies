@@ -8,8 +8,10 @@ using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using MyMovies.DAL;
+using Microsoft.EntityFrameworkCore;
 
-namespace MyNotesWall2._0
+namespace MyMovies._0
 {
     public class Startup
     {
@@ -28,6 +30,8 @@ namespace MyNotesWall2._0
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<MyMoviesContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             // Add framework services.
             services.AddMvc();
         }

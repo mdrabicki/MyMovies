@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 
-namespace MyNotesWall2._0
+namespace MyMovies._0
 {
     public class Program
     {

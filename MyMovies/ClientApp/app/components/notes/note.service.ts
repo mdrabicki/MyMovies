@@ -21,9 +21,7 @@ export class NoteService {
         .catch(this.handleError); 
     };
     
-    addNote(note:Note):Promise<void>{
-        console.log("dzialam");
-       
+    addNote(note:Note):Promise<void>{     
         return this.http
         .post(this.notesURL+'/addNote'
             ,JSON.stringify(note)
