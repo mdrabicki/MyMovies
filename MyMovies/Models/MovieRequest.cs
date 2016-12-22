@@ -10,7 +10,7 @@ namespace MyMovies.Models
     {
         [Required]
         public string Title { get; set; }
-
+        [Range(typeof(int),"1900","2017")]
         public int Year { get; set; }
     }
 }

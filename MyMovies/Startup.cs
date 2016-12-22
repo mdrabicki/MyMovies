@@ -11,7 +11,7 @@ using Microsoft.Extensions.Logging;
 using MyMovies.DAL;
 using Microsoft.EntityFrameworkCore;
 
-namespace MyMovies._0
+namespace MyMovies
 {
     public class Startup
     {

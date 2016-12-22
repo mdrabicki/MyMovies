@@ -9,6 +9,9 @@ import { FetchDataComponent } from './components/fetchdata/fetchdata.component';
 import { CounterComponent } from './components/counter/counter.component';
 import {NotesComponent} from './components/notes/notes.component';
 import {NoteCreateComponent} from './components/notes/note-create.component';
+import {MoviesComponent} from './components/movies/movies.component';
+import {MovieDetailComponent} from './components/movies/movie-detail.component';
+
 
 @NgModule({
     bootstrap: [ AppComponent ],
@@ -20,6 +23,8 @@ import {NoteCreateComponent} from './components/notes/note-create.component';
         HomeComponent,
         NotesComponent,
         NoteCreateComponent,
+        MoviesComponent,
+        MovieDetailComponent,
     ],
     imports: [
         UniversalModule, // Must be first import. This automatically imports BrowserModule, HttpModule, and JsonpModule too.
@@ -30,6 +35,8 @@ import {NoteCreateComponent} from './components/notes/note-create.component';
             { path: 'fetch-data', component: FetchDataComponent },
             { path: 'notes',component:NotesComponent},
             { path: 'note-create',component:NoteCreateComponent},
+            { path: 'movies',component:MoviesComponent},
+            { path: 'movie-detail/:id',component:MovieDetailComponent},
             { path: '**', redirectTo: 'home' }
         ]),
         FormsModule,

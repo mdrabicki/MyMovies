@@ -1,0 +1,9 @@
+<h2>Szczegóły filmu <h2>
+
+<div class="movie-detail" *ngIf='movie'>
+    <ul>
+        <li> {{movie.title}} </li>
+        <li>  {{movie.year}} </li>
+    </ul>
+     <button (click)='goBack()'>back</button>
+</div>

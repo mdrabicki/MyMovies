@@ -1,0 +1,10 @@
+
+    .card {
+        break-inside:avoid;
+        border-style: ridge;
+        border-width: 3px;
+    }
+    .card-deck{
+         column-count:3;
+         overflow-wrap:break-word;   
+    }
