@@ -13,9 +13,8 @@ export class NoteService {
         private http: Http
     ) { };
 
-    getNotes(): Promise<Note[]> {
-        console.log("w serwisie");
-        return this.http.get(this.notesURL)
+    getNotes(movieId:number): Promise<Note[]> {
+        return this.http.get(this.notesURL+`${movieId}`)
         .toPromise()
         .then(response => response.json())
         .catch(this.handleError); 

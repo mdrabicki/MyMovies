@@ -3,22 +3,22 @@
 <!--<li *ngFor='let note of notes'>
     <span> {{note.title}} </span>
 </li>-->
-<p *ngIf="!notes"><em>Loading...</em></p>
+
 <p>
     <button (click)="gotoNoteCreate()">  Create New  </button>
 </p>
-
+<p *ngIf="!notes"><em>Loading...</em></p>
 <div class="card-deck-wrapper">
     <div class="card-deck">
        <div class="card" *ngFor="let note of notes">
            <div class="card-block">
                <table style="width:100%">
                    <tr>
-                       <th width="60%"><a class="card-title">{{note.title}}</a></th>
+                       <th width="60%"><a class="card-title">{{note.comment}}</a></th>
                        <th>Edit</th>
                        <th>Delete</th>
                </table>
-               <p class="card-text">{{note.content}}</p>
+               <p class="card-text">{{note.rate}}</p>
                <p class="card-text"><small class="text-muted"></small></p>
            </div>
         </div>

@@ -32,12 +32,11 @@ namespace MyMovies.Controllers
             return Ok();
         }
 
-        [HttpGet("[action]")]
-        [Route("review")]
+        [HttpGet, Route("review/{movieId:int}")]
         public IActionResult GetReviewsForMovie(int movieId)
         {
-            var movies =_reviewService.GetReviewsForMovie(movieId);
-            return Ok();
+            var reviews =_reviewService.GetReviewsForMovie(movieId);
+            return Ok(reviews);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿export class Note {
+    id:number;
     rate: number;
     comment: string;
 

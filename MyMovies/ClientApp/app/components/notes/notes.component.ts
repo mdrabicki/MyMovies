@@ -1,6 +1,7 @@
 ﻿import {Component, OnInit,Input} from '@angular/core';
 import {Router} from '@angular/router';
 
+
 import {NoteService} from './note.service';
 import {Note} from './note';
 
@@ -24,9 +25,10 @@ import {Note} from './note';
     ){}
 
     getNotes():void{
-        this.noteService.getNotes()
+        this.noteService.getNotes(this.movieId)
         .then(notes => this.notes=notes)
         .catch();
+        
         
     };
     gotoNoteCreate():void{
@@ -35,7 +37,7 @@ import {Note} from './note';
 
 
      ngOnInit():void{
-  //       this.getNotes();
+         this.getNotes();
      }
   
 

@@ -1,4 +1,5 @@
-﻿using MyMovies.DAL;
+﻿using Microsoft.EntityFrameworkCore;
+using MyMovies.DAL;
 using MyMovies.Models;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,15 +32,20 @@ namespace MyMovies.Services
 
         internal IEnumerable<ReviewResponse> GetReviewsForMovie(int movieId)
         {
-            
-                var movie = _db.Movies.Single(m=>m.Id == movieId);
-                return movie.Reviews.Select(x => new ReviewResponse()
+
+           return _db.Movies
+                .Include(m=>m.Reviews)
+                .Where(i => i.Id == movieId)
+                .Select(r => r.Reviews
+                .Select(x => new ReviewResponse()
                 {
-                    Id = x.Id,
                     Comment = x.Comment,
+                    Id = x.Id,
                     Rate = x.Rate
-                }).ToList();
-            
+                }
+                ).ToList()
+                ).FirstOrDefault();
+
         }
     }
 }

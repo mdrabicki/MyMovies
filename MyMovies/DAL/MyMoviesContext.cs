@@ -11,5 +11,6 @@ namespace MyMovies.DAL
         }
 
         public DbSet<Movie> Movies { get; set; }
+
     }
 }

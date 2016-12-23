@@ -26,8 +26,6 @@ export class NoteCreateComponent{
     }
 
     addNote():void{       
-        console.log('id jest rowne:  ' + this.movieId);
-        
         this.noteService.addNote(this.note,this.movieId)
         .then(()=>this.goBack());
     }
