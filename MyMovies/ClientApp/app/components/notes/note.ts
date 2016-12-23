@@ -1,9 +1,9 @@
 ﻿export class Note {
-    title: string;
-    content: string;
+    rate: number;
+    comment: string;
 
     constructor(){
-        this.title="";
-        this.content="";
+        this.rate=0;
+        this.comment="";
     }
 }   

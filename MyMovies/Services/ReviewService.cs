@@ -15,8 +15,10 @@ namespace MyMovies.Services
         }
         internal void AddReviewToMovie(int movieId, ReviewRequest request)
         {
-            
+            if(movieId==0)
+            { return; }
                 var movie = _db.Movies.Single(m=>m.Id==movieId);
+            if (movie.Reviews == null) { movie.Reviews = new List<Review>(); }
                 movie.Reviews.Add(new Review()
                 {
                     Comment = request.Comment,

@@ -1,4 +1,4 @@
-﻿import {Component, OnInit} from '@angular/core';
+﻿import {Component, OnInit,Input} from '@angular/core';
 import {Router} from '@angular/router';
 
 import {NoteService} from './note.service';
@@ -16,6 +16,7 @@ import {Note} from './note';
 
     export class NotesComponent implements OnInit{
     public notes :Note[];
+    @Input() public movieId; 
 
     constructor(
         private noteService:NoteService,
@@ -34,13 +35,9 @@ import {Note} from './note';
 
 
      ngOnInit():void{
-         this.getNotes();
-        // this.test();
-         
+  //       this.getNotes();
      }
-    //  test():void{
-    //      this.noteService.test();
-    //  }
+  
 
 }
 

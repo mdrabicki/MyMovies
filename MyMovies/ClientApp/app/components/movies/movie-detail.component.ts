@@ -23,16 +23,20 @@ export class MovieDetailComponent implements OnInit{
     ){};
 
     goBack():void{
+        console.log(this.movie)
         this.location.back();
     }
 
     ngOnInit():void{
-        console.log("init dziala");
-        
+              
         this.route.params
         .switchMap((params:Params)=>this
         .movieService.getMovie(+params['id']))
-        .subscribe(movie => this.movie=movie);
-}
+        .subscribe(movie => this.movie=movie)
+        
+        
+        
+    }
+        
 
 }

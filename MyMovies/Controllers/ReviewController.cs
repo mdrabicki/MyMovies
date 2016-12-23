@@ -12,7 +12,7 @@ using MyMovies.DAL;
 
 namespace MyMovies.Controllers
 {
-    [Route("api/[controller]")]
+    
     public class ReviewController : Controller
     {
         private ReviewService _reviewService;
@@ -25,14 +25,15 @@ namespace MyMovies.Controllers
        
          
 
-        [HttpPost("[action]")]
-        public IActionResult AddReviewToMovie(int movieId, ReviewRequest request)
+        [HttpPost,Route("review/{movieId:int}")]
+        public IActionResult AddReviewToMovie(int movieId,[FromBody] ReviewRequest request)
         {
             _reviewService.AddReviewToMovie(movieId, request);
             return Ok();
         }
 
         [HttpGet("[action]")]
+        [Route("review")]
         public IActionResult GetReviewsForMovie(int movieId)
         {
             var movies =_reviewService.GetReviewsForMovie(movieId);
