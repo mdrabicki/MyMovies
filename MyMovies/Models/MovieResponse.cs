@@ -10,5 +10,7 @@ namespace MyMovies.Models
         public int Id { get; set; }
         public string Title { get; set; }
         public int Year { get; set; }
+        public ICollection<ActorResponse> Actors { get; set; }
+
     }
 }

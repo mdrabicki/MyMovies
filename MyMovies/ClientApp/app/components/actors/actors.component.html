@@ -1,0 +1,5 @@
+<actor-create (onActorAdd)='onActorAdd($event)'></actor-create>
+
+<div *ngFor="let actor of actors">
+    <li><a [routerLink]="['/actor-detail',actor.id]">  {{actor.firstName}} {{actor.lastName}} </a></li>
+</div>

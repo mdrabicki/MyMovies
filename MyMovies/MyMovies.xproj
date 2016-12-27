@@ -8,7 +8,7 @@
   <Import Project="$(VSToolsPath)\DotNet\Microsoft.DotNet.Props" Condition="'$(VSToolsPath)' != ''" />
   <PropertyGroup Label="Globals">
     <ProjectGuid>fbfd0e11-cf50-4a77-82ef-86a1a81eec60</ProjectGuid>
-    <RootNamespace>MyNotesWall2.0</RootNamespace>
+    <RootNamespace>MyMovies</RootNamespace>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup>

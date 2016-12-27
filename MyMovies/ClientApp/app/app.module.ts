@@ -11,6 +11,9 @@ import {NotesComponent} from './components/notes/notes.component';
 import {NoteCreateComponent} from './components/notes/note-create.component';
 import {MoviesComponent} from './components/movies/movies.component';
 import {MovieDetailComponent} from './components/movies/movie-detail.component';
+import {ActorsComponent} from './components/actors/actors.component';
+import {ActorCreateComponent} from './components/actors/actor-create.component';
+import {ActorDetailComponent} from './components/actors/actor-detail.component';
 
 
 @NgModule({
@@ -25,6 +28,10 @@ import {MovieDetailComponent} from './components/movies/movie-detail.component';
         NoteCreateComponent,
         MoviesComponent,
         MovieDetailComponent,
+        ActorsComponent,
+        ActorCreateComponent,
+        ActorDetailComponent,
+
     ],
     imports: [
         UniversalModule, // Must be first import. This automatically imports BrowserModule, HttpModule, and JsonpModule too.
@@ -37,6 +44,9 @@ import {MovieDetailComponent} from './components/movies/movie-detail.component';
             { path: 'note-create',component:NoteCreateComponent},
             { path: 'movies',component:MoviesComponent},
             { path: 'movie-detail/:id',component:MovieDetailComponent},
+            { path: 'actors',component:ActorsComponent},
+            { path: 'actors-create',component:ActorCreateComponent },
+            { path: 'actor-detail/:id',component:ActorDetailComponent},
             { path: '**', redirectTo: 'home' }
         ]),
         FormsModule,

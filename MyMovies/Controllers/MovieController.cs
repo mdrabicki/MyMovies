@@ -28,9 +28,9 @@ namespace MyMovies.Controllers
                 return BadRequest(ModelState);
             }
 
-            _movieService.Add(movie);
+            MovieResponse movieResponse = _movieService.Add(movie);
 
-            return Ok("added");
+            return Ok(movieResponse);
         }
 
         [HttpGet, Route("movies/{id:int}")]

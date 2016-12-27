@@ -1,0 +1,17 @@
+
+  <div>
+  <div class="form-group">
+    <label for="FirstName">Imie </label>
+    <input type="text" [(ngModel)]="actor.firstName" name="first" class="form-control" id="FirstName" placeholder="FirstName">
+  </div>
+  <div class="form-group">
+    <label for="LastName">Nazwisko </label>
+    <input type="text" [(ngModel)]="actor.lastName" class="form-control" id="LastName" placeholder="LastName">
+  </div>
+   <div class="form-group">
+    <label for="Birthday">Data Urodzenia </label>
+    <input type="date" [(ngModel)]="actor.birthday" class="form-control" id="Birthday" placeholder="Birthday">
+  </div>
+
+  <button (click)='addActor(actor)' class="btn btn-default">Dodaj </button>
+  </div>

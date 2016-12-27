@@ -11,6 +11,8 @@ export class MovieService{
     ) { };
     
     addMovie(movie:Movie):Promise<Movie>{
+        console.log(movie);
+
         return this.http
         .post('movies',movie,this.headers)
         .toPromise()

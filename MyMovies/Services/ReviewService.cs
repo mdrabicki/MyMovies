@@ -3,6 +3,7 @@ using MyMovies.DAL;
 using MyMovies.Models;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 namespace MyMovies.Services
 {
@@ -14,11 +15,9 @@ namespace MyMovies.Services
         {
             _db = db;
         }
-        internal void AddReviewToMovie(int movieId, ReviewRequest request)
+        internal ReviewResponse AddReviewToMovie(int movieId, ReviewRequest request)
         {
-            if(movieId==0)
-            { return; }
-                var movie = _db.Movies.Single(m=>m.Id==movieId);
+            var movie = _db.Movies.Single(m=>m.Id==movieId);
             if (movie.Reviews == null) { movie.Reviews = new List<Review>(); }
                 movie.Reviews.Add(new Review()
                 {
@@ -27,6 +26,22 @@ namespace MyMovies.Services
                 });
 
                 _db.SaveChanges();
+
+            var review = _db.Movies
+                .Include(m => m.Reviews)
+                .Single(mo=>mo.Id==movieId)
+                .Reviews
+                .Single(x => x.Comment == request.Comment);
+                 
+                 
+
+            return new ReviewResponse()
+            {
+                Id=review.Id,
+                Comment=review.Comment,
+                Rate=review.Rate
+            };
+                
         }
         
 
@@ -34,7 +49,7 @@ namespace MyMovies.Services
         {
 
            return _db.Movies
-                .Include(m=>m.Reviews)
+                .Include(m => m.Reviews)
                 .Where(i => i.Id == movieId)
                 .Select(r => r.Reviews
                 .Select(x => new ReviewResponse()
@@ -46,6 +61,20 @@ namespace MyMovies.Services
                 ).ToList()
                 ).FirstOrDefault();
 
+        }
+
+        internal void deleteReview(int movieId, int commentId)
+        {
+            var review = _db.Movies
+                .Include(x => x.Reviews)
+                .Single(m => m.Id == movieId)
+                .Reviews
+                .Single(r => r.Id == commentId);
+            _db.Remove(review);
+            _db.SaveChanges();
+                
+                
+                
         }
     }
 }

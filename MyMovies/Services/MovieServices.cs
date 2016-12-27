@@ -15,7 +15,7 @@ namespace MyMovies.Services
             _db = db;
         }
 
-        internal void Add(MovieRequest movie)
+        internal MovieResponse Add(MovieRequest movie)
         {
 
             _db.Movies.Add(new Movie()
@@ -24,6 +24,14 @@ namespace MyMovies.Services
                 Year = movie.Year
             });
             _db.SaveChanges();
+            Movie movieAdd = _db.Movies.Last(x => x.Title == movie.Title);
+            return new MovieResponse()
+            {
+                Id = movieAdd.Id,
+                Title = movieAdd.Title,
+                Year = movieAdd.Year
+
+            };
 
         }
 

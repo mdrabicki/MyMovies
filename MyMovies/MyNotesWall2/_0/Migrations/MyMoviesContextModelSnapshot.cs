@@ -16,6 +16,40 @@ namespace MyNotesWall2._0.Migrations
                 .HasAnnotation("ProductVersion", "1.0.2")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("MyMovies.DAL.Actor", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("Birthday");
+
+                    b.Property<string>("FirstName");
+
+                    b.Property<string>("LastName");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Actors");
+                });
+
+            modelBuilder.Entity("MyMovies.DAL.ActorMovie", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int?>("ActorsId");
+
+                    b.Property<int?>("MoviesId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ActorsId");
+
+                    b.HasIndex("MoviesId");
+
+                    b.ToTable("ActorMovie");
+                });
+
             modelBuilder.Entity("MyMovies.DAL.Movie", b =>
                 {
                     b.Property<int>("Id")
@@ -46,6 +80,17 @@ namespace MyNotesWall2._0.Migrations
                     b.HasIndex("MovieId");
 
                     b.ToTable("Review");
+                });
+
+            modelBuilder.Entity("MyMovies.DAL.ActorMovie", b =>
+                {
+                    b.HasOne("MyMovies.DAL.Actor", "Actors")
+                        .WithMany("ActorMovie")
+                        .HasForeignKey("ActorsId");
+
+                    b.HasOne("MyMovies.DAL.Movie", "Movies")
+                        .WithMany("ActorMovie")
+                        .HasForeignKey("MoviesId");
                 });
 
             modelBuilder.Entity("MyMovies.DAL.Review", b =>

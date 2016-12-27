@@ -28,8 +28,8 @@ namespace MyMovies.Controllers
         [HttpPost,Route("review/{movieId:int}")]
         public IActionResult AddReviewToMovie(int movieId,[FromBody] ReviewRequest request)
         {
-            _reviewService.AddReviewToMovie(movieId, request);
-            return Ok();
+            ReviewResponse response = _reviewService.AddReviewToMovie(movieId, request);
+            return Ok(response);
         }
 
         [HttpGet, Route("review/{movieId:int}")]
@@ -37,6 +37,13 @@ namespace MyMovies.Controllers
         {
             var reviews =_reviewService.GetReviewsForMovie(movieId);
             return Ok(reviews);
+        }
+
+        [HttpDelete, Route("review/{movieId:int}/{commentId:int}")]
+        public IActionResult DeleteReview(int movieId,int commentId) 
+        {
+            _reviewService.deleteReview(movieId, commentId);
+            return Ok();
         }
     }
 }

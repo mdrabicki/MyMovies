@@ -1,20 +1,21 @@
-import {Component,Input} from '@angular/core';
+import {Component,Input,EventEmitter,Output} from '@angular/core';
 import {Location} from '@angular/common';
 import {Params,ActivatedRoute} from "@angular/router"
 
 import {NoteService} from './note.service';
-import {Note} from './note';
+import {Note,MockedNote} from './note';
 
 
 @Component({
     selector: "note-create",
     template: require('./note-create.component.html'),
-    providers: [NoteService]
-
+    providers: [NoteService],
 })
+
 
 export class NoteCreateComponent{
     note:Note;
+    @Output() onNoteAdd = new EventEmitter<Note>()
     @Input() movieId=0;
 
     constructor(
@@ -27,9 +28,13 @@ export class NoteCreateComponent{
 
     addNote():void{       
         this.noteService.addNote(this.note,this.movieId)
-        .then(()=>this.goBack());
+        .then(res=>this.onNoteAdd.emit(res))
+       // .then(()=>this.goBack());
     }
     goBack():void{
         this.location.back();
+    }
+    test(){
+        this.onNoteAdd.emit(new MockedNote().note);
     }
 }
