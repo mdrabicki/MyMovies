@@ -29,7 +29,7 @@ namespace MyMovies.Controllers
         }
 
         // GET api/values/5
-        [HttpGet Route("actors/{id}")]
+        [HttpGet, Route("actors/{id:int}")]
         public IActionResult GetActorDetail(int id)
         {
             ActorResponse response = _actorService.getActorDetail(id);

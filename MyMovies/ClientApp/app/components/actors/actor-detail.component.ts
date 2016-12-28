@@ -19,7 +19,7 @@ export class ActorDetailComponent implements OnInit{
     getActorDetail(id:number){
        this.actorService.getActorDetail(id)
        .then(actor => this.actor=actor)
-       .then(()=>console.log(this.actor));
+   //    .then(()=>console.log(this.actor));
         
     }
     ngOnInit(){
