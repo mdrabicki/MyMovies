@@ -5,8 +5,7 @@ import { UniversalModule } from 'angular2-universal';
 import { AppComponent } from './components/app/app.component'
 import { NavMenuComponent } from './components/navmenu/navmenu.component';
 import { HomeComponent } from './components/home/home.component';
-import { FetchDataComponent } from './components/fetchdata/fetchdata.component';
-import { CounterComponent } from './components/counter/counter.component';
+
 import {NotesComponent} from './components/notes/notes.component';
 import {NoteCreateComponent} from './components/notes/note-create.component';
 import {MoviesComponent} from './components/movies/movies.component';
@@ -15,7 +14,8 @@ import {ActorsComponent} from './components/actors/actors.component';
 import {ActorCreateComponent} from './components/actors/actor-create.component';
 import {ActorDetailComponent} from './components/actors/actor-detail.component';
 
-import {MaterialModule} from '@angular/material'
+
+import {MaterialModule} from '@angular/material';
 
 //import {card as MCDcard} from '@material/card';
 
@@ -25,8 +25,6 @@ import {MaterialModule} from '@angular/material'
     declarations: [
         AppComponent,
         NavMenuComponent,
-        CounterComponent,
-        FetchDataComponent,
         HomeComponent,
         NotesComponent,
         NoteCreateComponent,
@@ -43,8 +41,6 @@ import {MaterialModule} from '@angular/material'
         RouterModule.forRoot([
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'home', component: HomeComponent },
-            { path: 'counter', component: CounterComponent },
-            { path: 'fetch-data', component: FetchDataComponent },
             { path: 'notes',component:NotesComponent},
             { path: 'note-create',component:NoteCreateComponent},
             { path: 'movies',component:MoviesComponent},
