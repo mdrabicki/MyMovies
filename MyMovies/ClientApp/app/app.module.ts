@@ -14,6 +14,9 @@ import {MovieDetailComponent} from './components/movies/movie-detail.component';
 import {ActorsComponent} from './components/actors/actors.component';
 import {ActorCreateComponent} from './components/actors/actor-create.component';
 import {ActorDetailComponent} from './components/actors/actor-detail.component';
+import * as mdc from 'material-components-web';
+
+//import {card as MCDcard} from '@material/card';
 
 
 @NgModule({

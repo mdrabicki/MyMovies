@@ -1,3 +1,4 @@
+import './__2.1.1.workaround';
 import 'angular2-universal-polyfills';
 import 'zone.js';
 import { enableProdMode } from '@angular/core';
