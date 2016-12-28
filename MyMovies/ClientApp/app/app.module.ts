@@ -14,7 +14,8 @@ import {MovieDetailComponent} from './components/movies/movie-detail.component';
 import {ActorsComponent} from './components/actors/actors.component';
 import {ActorCreateComponent} from './components/actors/actor-create.component';
 import {ActorDetailComponent} from './components/actors/actor-detail.component';
-import * as mdc from 'material-components-web';
+
+import {MaterialModule} from '@angular/material'
 
 //import {card as MCDcard} from '@material/card';
 
@@ -37,6 +38,7 @@ import * as mdc from 'material-components-web';
 
     ],
     imports: [
+        MaterialModule.forRoot(),
         UniversalModule, // Must be first import. This automatically imports BrowserModule, HttpModule, and JsonpModule too.
         RouterModule.forRoot([
             { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -52,6 +54,7 @@ import * as mdc from 'material-components-web';
             { path: 'actor-detail/:id',component:ActorDetailComponent},
             { path: '**', redirectTo: 'home' }
         ]),
+
         FormsModule,
     ]
 })
