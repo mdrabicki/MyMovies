@@ -1,6 +1,8 @@
 import { Http , Headers } from "@angular/http";
 import{Movie} from './movie';
 import {Injectable} from '@angular/core';
+import {Actor} from '../actors/actor';
+import{Observable} from 'rxjs';
 
 
 @Injectable()
@@ -11,8 +13,6 @@ export class MovieService{
     ) { };
     
     addMovie(movie:Movie):Promise<Movie>{
-        console.log(movie);
-
         return this.http
         .post('movies',movie,this.headers)
         .toPromise()
@@ -34,5 +34,17 @@ export class MovieService{
         return this.http.get('movies/'+`${id}`)
         .toPromise()
         .then(response => response.json());
+    }
+    search(actorName:string):Observable<Actor[]>{
+        return this.http
+        .get('actors/' + `${actorName}`)
+        .map(res=>res.json());
+        
+    }
+    addActorToMovie(movieId:number,actorId:number):Promise<void>{
+        return this.http
+        .post('movies/'+`${movieId}`,actorId,this.headers)
+        .toPromise()
+        .then(()=>null)
     }
 }

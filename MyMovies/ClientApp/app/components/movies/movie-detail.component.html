@@ -11,3 +11,13 @@
 <div *ngIf = "this.movie != null">
 <notes [movieId] = "this.movie.id"> </notes>
 </div>
+
+<h4>Dodaj aktorów</h4>
+<div>
+<input #searchBox id="search-box" (keyup)="search(searchBox.value)"/>
+<div *ngFor="let actor of actors | async "
+(click)="addActorToMovie(actor)" class="search-result" >
+{{actor.firstName}}  {{actor.lastName}}
+</div>
+
+</div>

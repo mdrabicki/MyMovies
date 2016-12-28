@@ -43,6 +43,19 @@ namespace MyMovies.Controllers
             return Ok(actorResponse);
         }
 
+        [HttpGet,Route("actors/{actorName}")]
+        public IActionResult SearchActor(string actorName)
+        {
+            ICollection<ActorResponse> SearchResult =_actorService.SearchActors(actorName);
+
+            return Ok(SearchResult);
+        }
+
+        private void SearchActors(string actorName)
+        {
+            throw new NotImplementedException();
+        }
+
         // PUT api/values/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody]string value)

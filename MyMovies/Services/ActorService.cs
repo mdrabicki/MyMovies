@@ -60,5 +60,18 @@ namespace MyMovies.Services
                          }).ToList();
                
         }
+
+        internal ICollection<ActorResponse> SearchActors(string actorName)
+        {
+            return _db.Actors
+                .Where(x => x.FirstName.Contains(actorName) || x.LastName.Contains(actorName))
+                .Select(actor => new ActorResponse()
+                {
+                    Id=actor.Id,
+                    FirstName=actor.FirstName,
+                    LastName=actor.LastName,
+                    Birthday=actor.Birthday
+                }).ToList();
+        }
     }
 }

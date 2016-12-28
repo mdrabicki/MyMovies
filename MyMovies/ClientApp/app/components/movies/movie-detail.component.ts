@@ -1,8 +1,11 @@
 import {Component, OnInit} from "@angular/core";
 import {Movie} from "./movie";
+import {Actor} from "../actors/actor";
 import {Location} from "@angular/common";
 import {Params, ActivatedRoute} from '@angular/router'
 import {MovieService} from './movie.service';
+import {Observable,Subject} from 'rxjs';
+
 
 import 'rxjs/add/operator/switchMap';
 
@@ -15,6 +18,8 @@ import 'rxjs/add/operator/switchMap';
 
 export class MovieDetailComponent implements OnInit{
     movie:Movie;
+    actors:Observable<Actor[]>;
+    private searchTerm = new Subject<string>();
     constructor(
         private location:Location,
         private route:ActivatedRoute,
@@ -28,14 +33,26 @@ export class MovieDetailComponent implements OnInit{
     }
 
     ngOnInit():void{
-              
-        this.route.params
+        this.route.params 
         .switchMap((params:Params)=>this
         .movieService.getMovie(+params['id']))
-        .subscribe(movie => this.movie=movie)
+        .subscribe(movie => this.movie=movie)  
+
+        this.actors = this.searchTerm
+        .debounceTime(600)
+        .distinctUntilChanged()
+        .switchMap(term=> term
+        ? this.movieService.search(term)
+        : Observable.of<Actor[]>([])
+        )
+    }
+    addActorToMovie(actor:Actor){
         
+        this.movieService.addActorToMovie(this.movie.id ,actor.id);
         
-        
+    }
+    search(actorName:string):void{
+        this.searchTerm.next(actorName)
     }
         
 
