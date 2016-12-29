@@ -1,6 +1,6 @@
 import {Component, OnInit} from "@angular/core";
-import {Movie} from "./movie";
-import {Actor} from "../actors/actor";
+import {Movie, MovieDetailsResponse} from "./movie";
+import {Actor,ActorInMovie} from "../actors/actor";
 import {Location} from "@angular/common";
 import {Params, ActivatedRoute} from '@angular/router'
 import {MovieService} from './movie.service';
@@ -18,7 +18,9 @@ import 'rxjs/add/operator/switchMap';
 
 export class MovieDetailComponent implements OnInit{
     movie:Movie;
+    actorsInMovie:ActorInMovie[];
     actors:Observable<Actor[]>;
+    movieDetailsResponse:MovieDetailsResponse;
     private searchTerm = new Subject<string>();
     constructor(
         private location:Location,
@@ -28,15 +30,26 @@ export class MovieDetailComponent implements OnInit{
     ){};
 
     goBack():void{
-        console.log(this.movie)
         this.location.back();
     }
 
+    getMovieDetails(id:number){
+        this.movieService.getMovie(id)
+        .then(res=>this.movieDetailsResponse=res)
+        .then(det => 
+        {
+            this.actorsInMovie=det.actors,
+            this.movie=det.movie
+        })
+    }
+
     ngOnInit():void{
-        this.route.params 
-        .switchMap((params:Params)=>this
-        .movieService.getMovie(+params['id']))
-        .subscribe(movie => this.movie=movie)  
+        
+        this.route.params
+        .subscribe(params => this.getMovieDetails(+params['id']));
+        // .switchMap((params:Params)=>this.getMovieDetails(params['id']));
+        // .movieService.getMovie()
+        // .subscribe(movie => this.movie=movie)  
 
         this.actors = this.searchTerm
         .debounceTime(600)
@@ -46,9 +59,9 @@ export class MovieDetailComponent implements OnInit{
         : Observable.of<Actor[]>([])
         )
     }
-    addActorToMovie(actor:Actor){
+    addActorToMovie(actor:Actor,role:string){
         
-        this.movieService.addActorToMovie(this.movie.id ,actor.id);
+        this.movieService.addActorToMovie(this.movie.id ,actor.id,role);
         
     }
     search(actorName:string):void{

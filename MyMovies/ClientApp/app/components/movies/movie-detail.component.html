@@ -1,23 +1,31 @@
-<h2>Szczegóły filmu <h2>
+<h2>Szczegóły filmu</h2>
 
-<div class="movie-detail" *ngIf='movie' >
+<div class="movie-detail" *ngIf='movie'>
     <ul>
         <li> {{movie.title}} </li>
-        <li>  {{movie.year}} </li>
+        <li> {{movie.year}} </li>
     </ul>
-     <button (click)='goBack()'>back</button>
+    <button (click)='goBack()'>back</button>
 </div>
 
-<div *ngIf = "this.movie != null">
-<notes [movieId] = "this.movie.id"> </notes>
+<div *ngIf="actorsInMovie" >
+    <div *ngFor="let actor of actorsInMovie">
+        {{actor.firstName}} {{actor.lastName}} {{actor.role}}
+    </div>
 </div>
 
 <h4>Dodaj aktorów</h4>
 <div>
-<input #searchBox id="search-box" (keyup)="search(searchBox.value)"/>
-<div *ngFor="let actor of actors | async "
-(click)="addActorToMovie(actor)" class="search-result" >
-{{actor.firstName}}  {{actor.lastName}}
+    <input #role>
+    <input #searchBox id="search-box" (keyup)="search(searchBox.value)" />
+    <div *ngFor="let actor of actors | async " (click)="addActorToMovie(actor,role.value)" class="search-result">
+        {{actor.firstName}} {{actor.lastName}}
+    </div>
+
 </div>
 
+
+
+<div *ngIf="this.movie != null">
+    <notes [movieId]="this.movie.id"> </notes>
 </div>

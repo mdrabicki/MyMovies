@@ -24,8 +24,6 @@ export class NoteService implements OnDestroy {
     };
     
     addNote(note:Note,movieId:number):Promise<Note>{ 
-        console.log("Dodanie notki");
-        
         return this.http
         .post(this.notesURL+`${movieId}`
             ,JSON.stringify(note)

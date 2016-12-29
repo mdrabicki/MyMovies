@@ -36,7 +36,7 @@ namespace MyMovies.Controllers
         [HttpGet, Route("movies/{id:int}")]
         public IActionResult GetById(int id)
         {
-            var movie = _movieService.Find(id);
+            var movie = _movieService.GetMovieDetails(id);
             return Ok(movie);
         }
 
@@ -44,6 +44,13 @@ namespace MyMovies.Controllers
         public IActionResult Delete(int id)
         {
             _movieService.Delete(id);
+            return Ok();
+        }
+
+        [HttpPost, Route("movies/{movieId:int}")]
+        public IActionResult AddActorToMovie(int movieId,[FromBody] ActorToMovieRequest actorToMovie)
+        {
+            _movieService.AddActorToMovie(movieId, actorToMovie);
             return Ok();
         }
     }

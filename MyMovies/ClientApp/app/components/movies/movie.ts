@@ -1,3 +1,5 @@
+import{Actor,ActorInMovie} from '../actors/actor';
+
 export class Movie{
     id:number;
     title:string;
@@ -7,4 +9,10 @@ export class Movie{
         this.title=title;
         this.year=year;
     }
+}
+
+export class MovieDetailsResponse
+{
+    movie:Movie;
+    actors:ActorInMovie[];
 }

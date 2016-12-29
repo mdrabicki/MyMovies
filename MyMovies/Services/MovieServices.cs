@@ -1,4 +1,5 @@
-﻿using MyMovies.DAL;
+﻿using Microsoft.EntityFrameworkCore;
+using MyMovies.DAL;
 using MyMovies.Models;
 using System;
 using System.Collections.Generic;
@@ -35,20 +36,33 @@ namespace MyMovies.Services
 
         }
 
-        internal MovieResponse Find(int id)
+        internal MovieResponse GetMovieDetails(int id)
         {
-            var movie = _db.Movies.Single(m => m.Id == id);
+            var movie = _db.Movies
+                .Include(x => x.ActorMovie)
+                .ThenInclude(a=>a.Actors)
+                .Single(m => m.Id == id);
             if (movie == null)
             {
                 return null;
             }
 
-            return new MovieResponse()
+            var response = new MovieResponse()
             {
                 Id = movie.Id,
                 Title = movie.Title,
-                Year = movie.Year
+                Year = movie.Year,
             };
+            response.Actors = movie.ActorMovie
+                .Select(a => new ActorToMovieResponse()
+                {
+                    FirstName = a.Actors.FirstName,
+                    Id = a.Actors.Id,
+                    LastName = a.Actors.LastName,
+                    Role = a.Role
+                }).ToList();
+
+            return response;
 
         }
 
@@ -62,6 +76,18 @@ namespace MyMovies.Services
                 Year = movie.Year
             }).ToList();
 
+        }
+
+        internal void AddActorToMovie(int movieId, ActorToMovieRequest actorToMovie)
+        {
+            _db.ActorMovie.Add(new ActorMovie()
+            {
+                Actors = _db.Actors.Single(a => a.Id == actorToMovie.ActorId),
+                Movies = _db.Movies.Single(m => m.Id == movieId),
+                Role=actorToMovie.Role
+            });
+            _db.SaveChanges();
+            return;
         }
 
         internal void Delete(int id)
