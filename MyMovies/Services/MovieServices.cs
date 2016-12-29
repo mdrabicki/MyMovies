@@ -18,7 +18,7 @@ namespace MyMovies.Services
 
         internal MovieResponse Add(MovieRequest movie)
         {
-
+           
             _db.Movies.Add(new Movie()
             {
                 Title = movie.Title,
@@ -38,6 +38,7 @@ namespace MyMovies.Services
 
         internal MovieResponse GetMovieDetails(int id)
         {
+            //TODO: Bug: Movies.Actors.Movies.Actors...
             var movie = _db.Movies
                 .Include(x => x.ActorMovie)
                 .ThenInclude(a=>a.Actors)

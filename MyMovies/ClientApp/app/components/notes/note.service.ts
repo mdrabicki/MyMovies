@@ -1,4 +1,4 @@
-﻿import {Injectable,OnDestroy} from '@angular/core';
+﻿import {Injectable} from '@angular/core';
 import {Note} from './note';
 import {Http, Headers} from '@angular/http';
 import {Subject} from 'rxjs/Subject';
@@ -6,7 +6,7 @@ import {Subject} from 'rxjs/Subject';
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
-export class NoteService implements OnDestroy {
+export class NoteService {
     private notesURL = 'review/';
     private header=new Headers({'Content-Type': 'application/json'});
     public notesSource = new Subject<Note>();
@@ -44,8 +44,5 @@ export class NoteService implements OnDestroy {
         .toPromise()
         .then(()=>null)
     }
-    ngOnDestroy():void{
-        console.log("nie ma mnie");
-        
-    }
+   
 }

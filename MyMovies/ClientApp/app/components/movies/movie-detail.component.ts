@@ -39,17 +39,19 @@ export class MovieDetailComponent implements OnInit{
         .then(det => 
         {
             this.actorsInMovie=det.actors,
-            this.movie=det.movie
+            this.movie=new Movie(),
+            this.movie.id=det.id,
+            this.movie.title=det.title,
+            this.movie.year=det.year
         })
     }
 
     ngOnInit():void{
         
         this.route.params
-        .subscribe(params => this.getMovieDetails(+params['id']));
-        // .switchMap((params:Params)=>this.getMovieDetails(params['id']));
-        // .movieService.getMovie()
-        // .subscribe(movie => this.movie=movie)  
+        .subscribe((params:Params)=>
+        this.getMovieDetails(params['id']))
+
 
         this.actors = this.searchTerm
         .debounceTime(600)
@@ -60,8 +62,18 @@ export class MovieDetailComponent implements OnInit{
         )
     }
     addActorToMovie(actor:Actor,role:string){
+        var newActor = new ActorInMovie();
+        newActor.firstName = actor.firstName;
+        newActor.id = actor.id;
+        newActor.lastName = actor.lastName;
+        newActor.role = role;
         
-        this.movieService.addActorToMovie(this.movie.id ,actor.id,role);
+    
+        this.movieService.addActorToMovie(this.movie.id ,actor.id,role)
+        .then(()=>this.actorsInMovie.push(newActor))
+           
+
+        
         
     }
     search(actorName:string):void{

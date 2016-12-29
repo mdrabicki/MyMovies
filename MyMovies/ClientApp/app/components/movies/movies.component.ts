@@ -11,17 +11,15 @@ import {MovieService} from './movie.service'
 
 export class MoviesComponent implements OnInit{
     movies:Movie[];
+    movie: Movie;
     constructor(
        private movieService:MovieService,
-    ){}
+    ){
+        this.movie=new Movie();
+    }
     addMovie():void{
-        var movie = new Movie(        
-        (<HTMLInputElement>document.getElementById("movie.title")).value,
-        parseFloat((<HTMLInputElement>document.getElementById("movie.year")).value)
-        )
-        
         this.movieService
-        .addMovie(movie)
+        .addMovie(this.movie)
         .then(movie =>this.movies.push(movie));
     }
     ngOnInit():void{

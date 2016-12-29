@@ -8,6 +8,7 @@ import{Observable} from 'rxjs';
 @Injectable()
 export class MovieService{
     private headers:Headers = new Headers({'content-type': 'application/json'});
+    
      constructor(
         private http: Http
     ) { };
@@ -37,7 +38,7 @@ export class MovieService{
     }
     search(actorName:string):Observable<Actor[]>{
         return this.http
-        .get('actors/' + `${actorName}`)
+        .get('actors/' +`${actorName}`)
         .map(res=>res.json());
         
     }

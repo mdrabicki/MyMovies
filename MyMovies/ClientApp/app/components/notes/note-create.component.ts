@@ -34,7 +34,4 @@ export class NoteCreateComponent{
     goBack():void{
         this.location.back();
     }
-    test(){
-        this.onNoteAdd.emit(new MockedNote().note);
-    }
 }

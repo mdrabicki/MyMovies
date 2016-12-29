@@ -1,4 +1,5 @@
-﻿using MyMovies.DAL;
+﻿using Microsoft.EntityFrameworkCore;
+using MyMovies.DAL;
 using MyMovies.Models;
 using System;
 using System.Collections.Generic;
@@ -38,13 +39,24 @@ namespace MyMovies.Services
 
         internal ActorResponse getActorDetail(int id)
         {
-            var actor = _db.Actors.Single(x => x.Id == id);
+            var actor = _db.Actors.Include(m=>m.ActorMovie)
+                .ThenInclude(movies => movies.Movies)
+                .Single(x => x.Id == id)
+                ;
             return new ActorResponse()
             {
                 Id = actor.Id,
                 Birthday = actor.Birthday,
                 FirstName = actor.FirstName,
                 LastName = actor.LastName,
+                Roles = actor.ActorMovie.Select(m => new ActorRole()
+                {
+                    Id = m.Movies.Id,
+                    MovieId=m.Movies.Id,
+                    MovieTitle = m.Movies.Title,
+                    Year=m.Movies.Year,
+                    RoleName=m.Role
+                }).ToList()
             };
         }
 
@@ -64,7 +76,7 @@ namespace MyMovies.Services
         internal ICollection<ActorResponse> SearchActors(string actorName)
         {
             return _db.Actors
-                .Where(x => x.FirstName.Contains(actorName) || x.LastName.Contains(actorName))
+                .Where(x => (x.FirstName.Contains(actorName) || x.LastName.Contains(actorName)))
                 .Select(actor => new ActorResponse()
                 {
                     Id=actor.Id,

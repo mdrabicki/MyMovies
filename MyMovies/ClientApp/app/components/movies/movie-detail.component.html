@@ -1,5 +1,6 @@
 <h2>Szczegóły filmu</h2>
 
+<p *ngIf="!movie"><em>loading...</em></p>
 <div class="movie-detail" *ngIf='movie'>
     <ul>
         <li> {{movie.title}} </li>
@@ -10,7 +11,7 @@
 
 <div *ngIf="actorsInMovie" >
     <div *ngFor="let actor of actorsInMovie">
-        {{actor.firstName}} {{actor.lastName}} {{actor.role}}
+       <a [routerLink]="['/actor-detail',actor.id]"> {{actor.firstName}} {{actor.lastName}} </a> {{actor.role}}
     </div>
 </div>
 

@@ -5,14 +5,18 @@ export class Movie{
     title:string;
     year: number;
 
-    constructor(title:string,year: number){
-        this.title=title;
-        this.year=year;
-    }
+    // constructor(title:string,year: number){
+    //     this.title=title;
+    //     this.year=year;
+    // }
 }
 
 export class MovieDetailsResponse
 {
-    movie:Movie;
+    id:number;
+    title:string;
+    year: number;
+
     actors:ActorInMovie[];
+  
 }

@@ -11,6 +11,6 @@ namespace MyMovies.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public DateTime Birthday { get; set; }
-        public ICollection<MovieResponse> Movies { get; set; }
+        public ICollection<ActorRole> Roles { get; set; }
     }
 }
