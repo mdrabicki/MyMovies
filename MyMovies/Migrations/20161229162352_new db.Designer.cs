@@ -8,9 +8,10 @@ using MyMovies.DAL;
 namespace MyMovies.Migrations
 {
     [DbContext(typeof(MyMoviesContext))]
-    partial class MyMoviesContextModelSnapshot : ModelSnapshot
+    [Migration("20161229162352_new db")]
+    partial class newdb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.2")

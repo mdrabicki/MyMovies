@@ -32,6 +32,7 @@ namespace MyMovies
         {
             services.AddDbContext<MyMoviesContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+          
             // Add framework services.
             services.AddMvc();
         }

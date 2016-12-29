@@ -81,14 +81,14 @@ namespace MyMovies.Services
 
         internal void AddActorToMovie(int movieId, ActorToMovieRequest actorToMovie)
         {
-            _db.ActorMovie.Add(new Role()
-            {
-                Actor = _db.Actors.Single(a => a.Id == actorToMovie.ActorId),
-                Movie = _db.Movies.Single(m => m.Id == movieId),
-                RoleName=actorToMovie.Role
-            });
-            _db.SaveChanges();
-            return;
+            //_db.Movies.Add(new Role()
+            //{
+            //    Actor = _db.Actors.Single(a => a.Id == actorToMovie.ActorId),
+            //    Movie = _db.Movies.Single(m => m.Id == movieId),
+            //    RoleName=actorToMovie.Role
+            //});
+            //_db.SaveChanges();
+            //return;
         }
 
         internal void Delete(int id)
