@@ -13,7 +13,7 @@ namespace MyMovies.DAL
         public string LastName { get; set; }
         [DataType(DataType.Date)]
         public DateTime Birthday { get; set; }
-        virtual public ICollection<ActorMovie> ActorMovie { get; set; }
+        virtual public ICollection<Role> Roles { get; set; }
 
     }
 }

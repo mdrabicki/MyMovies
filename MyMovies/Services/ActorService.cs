@@ -39,8 +39,8 @@ namespace MyMovies.Services
 
         internal ActorResponse getActorDetail(int id)
         {
-            var actor = _db.Actors.Include(m=>m.ActorMovie)
-                .ThenInclude(movies => movies.Movies)
+            var actor = _db.Actors.Include(m=>m.Roles)
+                .ThenInclude(movies => movies.Movie)
                 .Single(x => x.Id == id)
                 ;
             return new ActorResponse()
@@ -49,13 +49,13 @@ namespace MyMovies.Services
                 Birthday = actor.Birthday,
                 FirstName = actor.FirstName,
                 LastName = actor.LastName,
-                Roles = actor.ActorMovie.Select(m => new ActorRole()
+                Roles = actor.Roles.Select(m => new ActorRole()
                 {
-                    Id = m.Movies.Id,
-                    MovieId=m.Movies.Id,
-                    MovieTitle = m.Movies.Title,
-                    Year=m.Movies.Year,
-                    RoleName=m.Role
+                    Id = m.Movie.Id,
+                    MovieId=m.Movie.Id,
+                    MovieTitle = m.Movie.Title,
+                    Year=m.Movie.Year,
+                    RoleName=m.RoleName
                 }).ToList()
             };
         }

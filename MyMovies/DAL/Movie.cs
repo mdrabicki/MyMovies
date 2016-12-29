@@ -8,6 +8,6 @@ namespace MyMovies.DAL
         public string Title { get; set; }
         public int Year { get; set; }
         public virtual ICollection<Review> Reviews { get; set; }
-        public virtual ICollection<ActorMovie> ActorMovie { get; set; }
+        public virtual ICollection<Role> Characters { get; set; }
     }
 }

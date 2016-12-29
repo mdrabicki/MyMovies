@@ -40,8 +40,8 @@ namespace MyMovies.Services
         {
             //TODO: Bug: Movies.Actors.Movies.Actors...
             var movie = _db.Movies
-                .Include(x => x.ActorMovie)
-                .ThenInclude(a=>a.Actors)
+                .Include(x => x.Characters)
+                .ThenInclude(a=>a.Actor)
                 .Single(m => m.Id == id);
             if (movie == null)
             {
@@ -54,13 +54,13 @@ namespace MyMovies.Services
                 Title = movie.Title,
                 Year = movie.Year,
             };
-            response.Actors = movie.ActorMovie
+            response.Actors = movie.Characters
                 .Select(a => new ActorToMovieResponse()
                 {
-                    FirstName = a.Actors.FirstName,
-                    Id = a.Actors.Id,
-                    LastName = a.Actors.LastName,
-                    Role = a.Role
+                    FirstName = a.Actor.FirstName,
+                    Id = a.Actor.Id,
+                    LastName = a.Actor.LastName,
+                    Role = a.RoleName
                 }).ToList();
 
             return response;
@@ -81,11 +81,11 @@ namespace MyMovies.Services
 
         internal void AddActorToMovie(int movieId, ActorToMovieRequest actorToMovie)
         {
-            _db.ActorMovie.Add(new ActorMovie()
+            _db.ActorMovie.Add(new Role()
             {
-                Actors = _db.Actors.Single(a => a.Id == actorToMovie.ActorId),
-                Movies = _db.Movies.Single(m => m.Id == movieId),
-                Role=actorToMovie.Role
+                Actor = _db.Actors.Single(a => a.Id == actorToMovie.ActorId),
+                Movie = _db.Movies.Single(m => m.Id == movieId),
+                RoleName=actorToMovie.Role
             });
             _db.SaveChanges();
             return;
