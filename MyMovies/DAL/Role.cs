@@ -7,9 +7,6 @@ namespace MyMovies.DAL
 {
     public class Role
     {
-        public int Id { get; set; }
-
-        //TODO:Change on Movie / Actor
         public int MovieId { get; set; }
         public Movie Movie { get; set; }
         public int ActorId { get; set; }

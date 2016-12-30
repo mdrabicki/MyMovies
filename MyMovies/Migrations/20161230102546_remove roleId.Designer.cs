@@ -8,8 +8,8 @@ using MyMovies.DAL;
 namespace MyMovies.Migrations
 {
     [DbContext(typeof(MyMoviesContext))]
-    [Migration("20161229162352_new db")]
-    partial class newdb
+    [Migration("20161230102546_remove roleId")]
+    partial class removeroleId
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -70,8 +70,6 @@ namespace MyMovies.Migrations
                     b.Property<int>("ActorId");
 
                     b.Property<int>("MovieId");
-
-                    b.Property<int>("Id");
 
                     b.Property<string>("RoleName");
 

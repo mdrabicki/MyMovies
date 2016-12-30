@@ -70,8 +70,6 @@ namespace MyMovies.Migrations
 
                     b.Property<int>("MovieId");
 
-                    b.Property<int>("Id");
-
                     b.Property<string>("RoleName");
 
                     b.HasKey("ActorId", "MovieId");

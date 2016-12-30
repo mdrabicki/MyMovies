@@ -19,10 +19,13 @@
 <div>
     <input #role>
     <input #searchBox id="search-box" (keyup)="search(searchBox.value)" />
-    <div *ngFor="let actor of actors | async " (click)="addActorToMovie(actor,role.value)" class="search-result">
+ <div *ngIf="actors">   
+    <ul>
+    <li *ngFor="let actor of actors | async " (click)="addActorToMovie(actor,role.value)" class="search-result">
         {{actor.firstName}} {{actor.lastName}}
-    </div>
-
+    </li>
+    </ul>
+ </div>
 </div>
 
 
