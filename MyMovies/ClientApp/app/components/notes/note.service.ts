@@ -7,7 +7,7 @@ import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class NoteService {
-    private notesURL = 'review/';
+    private notesURL = 'api/review/';
     private header=new Headers({'Content-Type': 'application/json'});
     public notesSource = new Subject<Note>();
 
