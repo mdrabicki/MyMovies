@@ -11,7 +11,7 @@ using MyMovies.Models;
 
 namespace MyMovies.Controllers
 {
-    
+    [Route("api/actors/")]
     public class ActorController : Controller
     {
         private ActorService _actorService;
@@ -22,28 +22,28 @@ namespace MyMovies.Controllers
         }
 
         // GET: api/values
-        [HttpGet, Route("actors")]
+        [HttpGet]
         public IActionResult GetAllActors()
         {
             return Ok(_actorService.getAllActors());
         }
 
         // GET api/values/5
-        [HttpGet, Route("actors/{id:int}")]
+        [HttpGet, Route("{id:int}")]
         public IActionResult GetActorDetail(int id)
         {
             ActorResponse response = _actorService.getActorDetail(id);
             return Ok(response);
         }
 
-        [HttpPost,Route("actors")]
+        [HttpPost]
         public IActionResult AddActor([FromBody]ActorRequest actor)
         {
             ActorResponse actorResponse = _actorService.addActor(actor);
             return Ok(actorResponse);
         }
 
-        [HttpGet,Route("actors/{actorName}")]
+        [HttpGet,Route("{actorName}")]
         public IActionResult SearchActor(string actorName)
         {
             ICollection<ActorResponse> SearchResult =_actorService.SearchActors(actorName);

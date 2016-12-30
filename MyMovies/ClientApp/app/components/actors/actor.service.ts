@@ -5,7 +5,7 @@ import{Actor} from "./actor";
 
 @Injectable()
 export class ActorService{
-    private actorURL="actors/";
+    private actorURL="api/actors/";
     private headers:Headers = new Headers({'content-type': 'application/json'});
     constructor(
         private http:Http

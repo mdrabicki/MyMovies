@@ -5,6 +5,7 @@ using MyMovies.Services;
 
 namespace MyMovies.Controllers
 {
+    [Route("api/movies/")]
     public class MovieController : Controller
     {
         private MovieService _movieService;
@@ -14,13 +15,13 @@ namespace MyMovies.Controllers
             _movieService = new MovieService(db);
         }
 
-        [HttpGet, Route("movies")]
+        [HttpGet]
         public IActionResult GetAllMovies()
         {
             return Ok(_movieService.GetAllMovies());
         }
 
-        [HttpPost, Route("movies")]
+        [HttpPost]
         public IActionResult AddMovie([FromBody]MovieRequest movie)
         {
             if (!ModelState.IsValid)
@@ -33,21 +34,21 @@ namespace MyMovies.Controllers
             return Ok(movieResponse);
         }
 
-        [HttpGet, Route("movies/{id:int}")]
+        [HttpGet, Route("{id:int}")]
         public IActionResult GetById(int id)
         {
             var movie = _movieService.GetMovieDetails(id);
             return Ok(movie);
         }
 
-        [HttpDelete, Route("movies/{id:int}")]
+        [HttpDelete, Route("{id:int}")]
         public IActionResult Delete(int id)
         {
             _movieService.Delete(id);
             return Ok();
         }
 
-        [HttpPost, Route("movies/{movieId:int}")]
+        [HttpPost, Route("{movieId:int}")]
         public IActionResult AddActorToMovie(int movieId,[FromBody] ActorToMovieRequest actorToMovie)
         {
             _movieService.AddActorToMovie(movieId, actorToMovie);
