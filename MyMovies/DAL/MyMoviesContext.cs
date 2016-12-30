@@ -22,6 +22,12 @@ namespace MyMovies.DAL
                 .HasOne(r => r.Movie)
                 .WithMany(m => m.Characters)
                 .HasForeignKey(k => k.MovieId);
+            modelBuilder.Entity<Movie>()
+                .HasMany(r => r.Reviews)
+                .WithOne(m => m.Movie)
+                .OnDelete(Microsoft.EntityFrameworkCore.Metadata.DeleteBehavior.Cascade);
+                
+                
         }
 
 

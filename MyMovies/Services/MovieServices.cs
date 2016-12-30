@@ -96,7 +96,7 @@ namespace MyMovies.Services
         internal void Delete(int id)
         {
 
-            var movie = _db.Movies.Single(m => m.Id == id);
+            Movie movie = _db.Movies.Include(r=>r.Reviews).Include(c=>c.Characters).Single(m => m.Id == id);
             if (movie == null)
             {
                 return;

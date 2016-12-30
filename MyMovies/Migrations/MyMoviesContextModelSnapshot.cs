@@ -85,7 +85,8 @@ namespace MyMovies.Migrations
                 {
                     b.HasOne("MyMovies.DAL.Movie", "Movie")
                         .WithMany("Reviews")
-                        .HasForeignKey("MovieId");
+                        .HasForeignKey("MovieId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("MyMovies.DAL.Role", b =>
